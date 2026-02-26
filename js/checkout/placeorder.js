@@ -52,7 +52,7 @@ const renderPlaceOrder = () => {
         const div = document.createElement('div');
         div.className = 'order-item';
         div.innerHTML = `
-            <img src="${item.image.startsWith('/') ? 'http://localhost:5000' + item.image : item.image}" alt="${item.name}">
+            <img src="${item.image.startsWith('/') ? '' + item.image : item.image}" alt="${item.name}">
             <a href="product.html?id=${item.product}" class="order-item-name">${item.name}</a>
             <div style="font-weight: 500;">
                 ${item.qty} x ₹${item.price} = <span style="color:var(--primary-color);">₹${(item.qty * item.price).toFixed(2)}</span>
@@ -117,7 +117,7 @@ placeOrderBtn.addEventListener('click', async () => {
 const handleRazorpayPayment = async (order) => {
     try {
         // 1. Get Razorpay Key Id
-        const { keyId } = await fetch('http://localhost:5000/api/payment/config').then(res => res.text()).then(key => ({ keyId: key }));
+        const { keyId } = await fetch('/api/payment/config').then(res => res.text()).then(key => ({ keyId: key }));
 
         // 2. Create Razorpay order on backend
         const rpOrder = await fetchAPI('/payment/create-order', 'POST', { amount: order.totalPrice }, true);

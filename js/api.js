@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/api';
+const API_URL = '/api';
 
 // Helper to get auth token
 const getToken = () => localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).token : null;

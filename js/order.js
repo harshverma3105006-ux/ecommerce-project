@@ -68,7 +68,7 @@ const loadOrder = async () => {
             const div = document.createElement('div');
             div.className = 'order-item';
             div.innerHTML = `
-                <img src="${item.image.startsWith('/') ? 'http://localhost:5000' + item.image : item.image}" alt="${item.name}">
+                <img src="${item.image.startsWith('/') ? '' + item.image : item.image}" alt="${item.name}">
                 <a href="product.html?id=${item.product}" class="order-item-name">${item.name}</a>
                 <div style="font-weight: 500;">
                     ${item.qty} x ₹${item.price} = <span style="color:var(--primary-color);">₹${itemTotal.toFixed(2)}</span>

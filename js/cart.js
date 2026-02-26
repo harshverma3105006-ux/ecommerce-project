@@ -44,7 +44,7 @@ const renderCart = () => {
         const div = document.createElement('div');
         div.className = 'cart-item';
         div.innerHTML = `
-            <img src="${item.image.startsWith('/') ? 'http://localhost:5000' + item.image : item.image}" alt="${item.name}" class="item-image">
+            <img src="${item.image.startsWith('/') ? '' + item.image : item.image}" alt="${item.name}" class="item-image">
             <a href="product.html?id=${item.product}" class="item-name">${item.name}</a>
             <div class="item-price">₹${item.price}</div>
             <select class="qty-select" onchange="updateCartItemqty('${item.product}', this.value)">

@@ -57,7 +57,7 @@ const loadProduct = async () => {
 };
 
 const renderProduct = (product) => {
-    prodImage.src = product.image.startsWith('/') ? `http://localhost:5000${product.image}` : product.image;
+    prodImage.src = product.image.startsWith('/') ? `${product.image}` : product.image;
     prodName.textContent = product.name;
     prodBrand.textContent = product.brand;
     prodCategory.textContent = product.category;

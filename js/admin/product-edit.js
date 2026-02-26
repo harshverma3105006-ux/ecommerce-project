@@ -94,7 +94,7 @@ imageFileInput.addEventListener('change', async (e) => {
 
     try {
         const token = JSON.parse(localStorage.getItem('userInfo')).token;
-        const res = await fetch(`http://localhost:5000/api/upload`, {
+        const res = await fetch(`/api/upload`, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${token}`

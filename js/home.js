@@ -38,7 +38,7 @@ const renderProducts = (products) => {
 
         // Dynamically fix the image path to point to your backend server
         const imageUrl = product.image.startsWith('/')
-            ? `http://localhost:5000${product.image}`
+            ? `${product.image}`
             : product.image;
 
         const card = document.createElement('div');
