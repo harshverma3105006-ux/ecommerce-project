@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile | ProShop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <style>
+        .profile-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        @media(max-width: 768px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .profile-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .table th,
+        .table td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .table th {
+            font-weight: 600;
+            background-color: var(--bg-color);
+        }
+
+        .badge-status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-success {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-danger {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        [data-theme="dark"] .status-success {
+            background-color: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+        }
+
+        [data-theme="dark"] .status-danger {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-shopping-bag"></i> ProShop
+                </a>
+                <div class="nav-links">
+                    <button id="themeToggle" class="icon-btn" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="cart.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span id="cartCount" class="badge">0</span>
+                    </a>
+                    <div class="dropdown" id="userMenuContainer">
+                        <a href="login.html" class="nav-link" id="loginLink">
+                            <i class="fas fa-user"></i> Sign In
+                        </a>
+                        <div class="dropdown-content" id="userDropdown" style="display: none;">
+                            <a href="profile.html">Profile</a>
+                            <a href="#" id="logoutBtn">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="profile-container">
+            <!-- Profile Update Section -->
+            <div class="profile-card">
+                <h2>User Profile</h2>
+                <div id="profileMessage" style="display: none;"></div>
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" class="form-control" placeholder="Enter new password">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" id="confirmPassword" class="form-control"
+                            placeholder="Confirm new password">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="updateBtn">Update</button>
+                </form>
+            </div>
+
+            <!-- Orders Section -->
+            <div class="profile-card">
+                <h2>My Orders</h2>
+                <div id="ordersLoader" class="loader" style="display: none;"></div>
+                <div id="ordersMessage" style="display: none;"></div>
+                <div style="overflow-x: auto;">
+                    <table class="table" id="ordersTable" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>DATE</th>
+                                <th>TOTAL</th>
+                                <th>PAID</th>
+                                <th>DELIVERED</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersBody">
+                            <!-- Orders injected here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/auth/profile.js"></script>
+</body>
+
+</html>

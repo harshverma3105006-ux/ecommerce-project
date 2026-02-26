@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details | ProShop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <style>
+        .order-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        @media(max-width: 900px) {
+            .order-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .order-info-section {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .order-info-section h2 {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .order-item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .order-item img {
+            width: 60px;
+            border-radius: var(--radius-md);
+        }
+
+        .order-item-name {
+            flex: 1;
+            font-weight: 600;
+        }
+
+        .order-summary-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            height: fit-content;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .summary-total {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .alert-box {
+            padding: 15px;
+            border-radius: var(--radius-md);
+            margin-top: 15px;
+            font-weight: 500;
+        }
+
+        .alert-success-box {
+            background-color: #d1fae5;
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+
+        .alert-danger-box {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+
+        [data-theme="dark"] .alert-success-box {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #34d399;
+        }
+
+        [data-theme="dark"] .alert-danger-box {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #f87171;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-shopping-bag"></i> ProShop
+                </a>
+                <div class="nav-links">
+                    <button id="themeToggle" class="icon-btn" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="cart.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span id="cartCount" class="badge">0</span>
+                    </a>
+                    <div class="dropdown" id="userMenuContainer">
+                        <a href="login.html" class="nav-link" id="loginLink">
+                            <i class="fas fa-user"></i> Sign In
+                        </a>
+                        <div class="dropdown-content" id="userDropdown" style="display: none;">
+                            <a href="profile.html">Profile</a>
+                            <a href="#" id="logoutBtn">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1 style="margin-bottom: 20px;">Order <span id="orderIdText"
+                style="font-size: 1.2rem; color: var(--text-muted); font-weight: normal;"></span></h1>
+
+        <div id="loading" class="loader" style="display: none;"></div>
+        <div id="errorMessage" class="alert-danger-box" style="display: none;"></div>
+
+        <div class="order-container" id="orderContainer" style="display: none;">
+            <div class="order-details">
+                <div class="order-info-section">
+                    <h2>Shipping</h2>
+                    <p><strong>Name: </strong> <span id="orderUserName"></span></p>
+                    <p><strong>Email: </strong> <a href="#" id="orderUserEmail" style="color:var(--primary-color)"></a>
+                    </p>
+                    <p><strong>Address: </strong> <span id="shippingDisplay"></span></p>
+                    <div id="deliverStatus" class="alert-box alert-danger-box" style="margin-top:20px;">Not Delivered
+                    </div>
+                </div>
+
+                <div class="order-info-section">
+                    <h2>Payment Method</h2>
+                    <p><strong>Method: </strong> <span id="paymentMethodDisplay"></span></p>
+                    <div id="paymentStatus" class="alert-box alert-danger-box" style="margin-top:20px;">Not Paid</div>
+                </div>
+
+                <div class="order-info-section">
+                    <h2>Order Items</h2>
+                    <div id="orderItemsList" class="order-item-list">
+                        <!-- Items injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <div class="order-summary-card">
+                    <h2>Order Summary</h2>
+
+                    <div class="summary-row" style="margin-top: 20px;">
+                        <span>Items</span>
+                        <span id="itemsPrice">₹0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span id="shippingPrice">₹0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax</span>
+                        <span id="taxPrice">₹0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-total">Total</span>
+                        <span class="summary-total" id="totalPrice">₹0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/order.js"></script>
+</body>
+
+</html>

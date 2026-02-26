@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | ProShop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <style>
+        .btn-back {
+            margin: 20px 0;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .btn-back:hover {
+            background: var(--border-color);
+        }
+
+        .product-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        @media(max-width: 900px) {
+            .product-details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .product-image-container {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            display: block;
+        }
+
+        .product-info h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .product-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+
+        .product-rating {
+            color: #f59e0b;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .product-description {
+            line-height: 1.8;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .product-actions {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .action-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .action-row:last-child {
+            border-bottom: none;
+        }
+
+        .stock-status {
+            font-weight: 600;
+        }
+
+        .stock-in {
+            color: var(--success-color);
+        }
+
+        .stock-out {
+            color: var(--danger-color);
+        }
+
+        .qty-select {
+            padding: 8px 15px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+            outline: none;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            margin-top: 15px;
+        }
+
+        /* Reviews */
+        .reviews-section {
+            margin-top: 50px;
+        }
+
+        .review-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .review-author {
+            font-weight: 600;
+        }
+
+        .review-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .write-review {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-shopping-bag"></i> ProShop
+                </a>
+                <div class="nav-links">
+                    <button id="themeToggle" class="icon-btn" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="cart.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span id="cartCount" class="badge">0</span>
+                    </a>
+                    <div class="dropdown" id="userMenuContainer">
+                        <a href="login.html" class="nav-link" id="loginLink">
+                            <i class="fas fa-user"></i> Sign In
+                        </a>
+                        <div class="dropdown-content" id="userDropdown" style="display: none;">
+                            <a href="profile.html">Profile</a>
+                            <a href="#" id="logoutBtn">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <button class="btn btn-back" onclick="history.back()"><i class="fas fa-arrow-left"></i> Go Back</button>
+
+        <div id="loading" class="loader" style="display: none;"></div>
+        <div id="error-message" class="alert alert-danger" style="display: none;"></div>
+
+        <div id="productContent" style="display: none;">
+            <div class="product-details">
+                <div class="product-image-container">
+                    <img src="" alt="Product" id="prodImage" class="product-image">
+                </div>
+
+                <div class="product-info">
+                    <h1 id="prodName">Loading...</h1>
+
+                    <div class="product-meta">
+                        <span id="prodBrand"></span> |
+                        <span id="prodCategory"></span>
+                    </div>
+
+                    <div class="product-rating" id="prodRating">
+                        <!-- Stars injected here -->
+                    </div>
+
+                    <div class="product-price" id="prodPrice">$0.00</div>
+
+                    <div class="product-description" id="prodDescription"></div>
+
+                    <div class="product-actions">
+                        <div class="action-row">
+                            <span>Status:</span>
+                            <span id="prodStatus" class="stock-status"></span>
+                        </div>
+
+                        <div class="action-row" id="qtyRow">
+                            <span>Qty:</span>
+                            <select id="prodQty" class="qty-select">
+                                <!-- Options injected here -->
+                            </select>
+                        </div>
+
+                        <button class="btn btn-primary btn-add-cart" id="addToCartBtn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reviews-section">
+                <h2>Reviews</h2>
+                <div id="reviewMessage" style="display: none;"></div>
+
+                <div class="write-review" id="writeReviewBox">
+                    <h3>Write a Customer Review</h3>
+                    <form id="reviewForm">
+                        <div style="margin-bottom: 15px;">
+                            <label style="display:block; margin-bottom: 5px;">Rating</label>
+                            <select id="ratingSelect" class="qty-select" style="width: 100%;" required>
+                                <option value="">Select...</option>
+                                <option value="1">1 - Poor</option>
+                                <option value="2">2 - Fair</option>
+                                <option value="3">3 - Good</option>
+                                <option value="4">4 - Very Good</option>
+                                <option value="5">5 - Excellent</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <label style="display:block; margin-bottom: 5px;">Comment</label>
+                            <textarea id="commentBox" class="qty-select"
+                                style="width: 100%; resize: vertical; min-height: 100px;" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="submitReviewBtn">Submit Review</button>
+                    </form>
+                </div>
+                <div class="write-review" id="loginToReviewBox" style="display: none;">
+                    <p>Please <a href="login.html" style="color:var(--primary-color)">sign in</a> to write a review.</p>
+                </div>
+
+                <div id="reviewsContainer">
+                    <!-- Reviews injected here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2026 ProShop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/product.js"></script>
+</body>
+
+</html>

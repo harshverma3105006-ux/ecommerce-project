@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProShop | Premium E-Commerce</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-shopping-bag"></i> ProShop
+                </a>
+
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search products...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+
+                <div class="nav-links">
+                    <button id="themeToggle" class="icon-btn" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="pages/cart.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span id="cartCount" class="badge">0</span>
+                    </a>
+                    <div class="dropdown" id="userMenuContainer">
+                        <a href="pages/login.html" class="nav-link" id="loginLink">
+                            <i class="fas fa-user"></i> Sign In
+                        </a>
+                        <!-- Populated by JS when logged in -->
+                        <div class="dropdown-content" id="userDropdown" style="display: none;">
+                            <a href="pages/profile.html">Profile</a>
+                            <a href="#" id="logoutBtn">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Main content injected here by JS depending on the page logic, for SPA feel or traditional. We'll use traditional multi-page with shared JS for simplicity, but index.html will be the home page -->
+        <!-- Promotional Carousel (Flipkart Style) -->
+        <section class="promotional-carousel" id="promoCarousel">
+            <div class="carousel-inner" id="carouselInner">
+                <!-- Slide 1 -->
+                <div class="carousel-item active">
+                    <img src="public/images/banner1.jpg" alt="Mega Sale" class="carousel-img">
+                    <div class="carousel-content">
+                        <h2>Mega Clearance Sale</h2>
+                        <p>Up to 50% off on premium electronics and accessories.</p>
+                        <button class="btn btn-primary"
+                            onclick="document.getElementById('latest').scrollIntoView({behavior:'smooth'})">Shop
+                            Now</button>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="carousel-item">
+                    <img src="public/images/banner2.jpg" alt="Apple Products" class="carousel-img">
+                    <div class="carousel-content">
+                        <h2>The Apple Ecosystem</h2>
+                        <p>Explore the latest MacBooks, iPhones, and AirPods.</p>
+                        <button class="btn btn-primary"
+                            onclick="document.getElementById('searchInput').value='Apple'; document.getElementById('searchBtn').click();">Explore
+                            Apple</button>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="carousel-item">
+                    <img src="public/images/banner3.jpg" alt="Sneakers" class="carousel-img">
+                    <div class="carousel-content">
+                        <h2>Step Into Style</h2>
+                        <p>Latest drops from Nike, Adidas, and more.</p>
+                        <button class="btn btn-primary"
+                            onclick="document.getElementById('searchInput').value='Nike'; document.getElementById('searchBtn').click();">View
+                            Sneakers</button>
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="carousel-item">
+                    <img src="public/images/banner4.jpg" alt="Workspaces" class="carousel-img">
+                    <div class="carousel-content">
+                        <h2>Upgrade Your Desk</h2>
+                        <p>Premium mechanical keyboards, mice, and accessories.</p>
+                        <button class="btn btn-primary"
+                            onclick="document.getElementById('searchInput').value='Keyboard'; document.getElementById('searchBtn').click();">Shop
+                            Accessories</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Arrows -->
+            <button class="carousel-control prev" id="carouselPrev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-control next" id="carouselNext"><i class="fas fa-chevron-right"></i></button>
+
+            <!-- Indicators -->
+            <div class="carousel-indicators" id="carouselIndicators">
+                <span class="indicator active" data-slide-to="0"></span>
+                <span class="indicator" data-slide-to="1"></span>
+                <span class="indicator" data-slide-to="2"></span>
+                <span class="indicator" data-slide-to="3"></span>
+            </div>
+        </section>
+
+        <section id="latest" class="section">
+            <h2>Latest Products</h2>
+            <div id="loading" class="loader" style="display: none;"></div>
+            <div id="error-message" class="alert alert-danger" style="display: none;"></div>
+            <div class="product-grid" id="productGrid">
+                <!-- Products injected here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2026 ProShop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/home.js"></script>
+</body>
+
+</html>

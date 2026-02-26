@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order | ProShop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <style>
+        .checkout-steps {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            gap: 20px;
+        }
+
+        .step {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .step.active {
+            color: var(--primary-color);
+        }
+
+        .placeorder-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        @media(max-width: 900px) {
+            .placeorder-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .order-info-section {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .order-info-section h2 {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .order-item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .order-item img {
+            width: 60px;
+            border-radius: var(--radius-md);
+        }
+
+        .order-item-name {
+            flex: 1;
+            font-weight: 600;
+        }
+
+        .order-summary-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            height: fit-content;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .summary-total {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .btn-block {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-shopping-bag"></i> ProShop
+                </a>
+                <div class="nav-links">
+                    <button id="themeToggle" class="icon-btn" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="cart.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span id="cartCount" class="badge">0</span>
+                    </a>
+                    <div class="dropdown" id="userMenuContainer">
+                        <a href="login.html" class="nav-link" id="loginLink">
+                            <i class="fas fa-user"></i> Sign In
+                        </a>
+                        <div class="dropdown-content" id="userDropdown" style="display: none;">
+                            <a href="profile.html">Profile</a>
+                            <a href="#" id="logoutBtn">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="checkout-steps">
+            <span class="step active">Shipping</span>
+            <span>></span>
+            <span class="step active">Payment</span>
+            <span>></span>
+            <span class="step active">Place Order</span>
+        </div>
+
+        <div class="placeorder-container">
+            <div class="order-details">
+                <div class="order-info-section">
+                    <h2>Shipping</h2>
+                    <p><strong>Address: </strong> <span id="shippingDisplay"></span></p>
+                </div>
+
+                <div class="order-info-section">
+                    <h2>Payment Method</h2>
+                    <p><strong>Method: </strong> <span id="paymentMethodDisplay"></span></p>
+                </div>
+
+                <div class="order-info-section">
+                    <h2>Order Items</h2>
+                    <div id="orderItemsList" class="order-item-list">
+                        <!-- Items injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <div class="order-summary-card">
+                    <h2>Order Summary</h2>
+                    <div id="orderError" style="display: none;"></div>
+
+                    <div class="summary-row" style="margin-top: 20px;">
+                        <span>Items</span>
+                        <span id="itemsPrice">₹0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span id="shippingPrice">₹0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax (18%)</span>
+                        <span id="taxPrice">₹0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-total">Total</span>
+                        <span class="summary-total" id="totalPrice">₹0.00</span>
+                    </div>
+
+                    <button id="placeOrderBtn" class="btn btn-primary btn-block">Place Order</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Razorpay Checkput SDK -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/checkout/placeorder.js"></script>
+</body>
+
+</html>

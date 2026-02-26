@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping | ProShop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <style>
+        .checkout-steps {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            gap: 20px;
+        }
+
+        .step {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .step.active {
+            color: var(--primary-color);
+        }
+
+        .shipping-container {
+            max-width: 500px;
+            margin: 0 auto 50px auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: var(--bg-color);
+            color: var(--text-color);
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-shopping-bag"></i> ProShop
+                </a>
+                <div class="nav-links">
+                    <button id="themeToggle" class="icon-btn" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="cart.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span id="cartCount" class="badge">0</span>
+                    </a>
+                    <div class="dropdown" id="userMenuContainer">
+                        <a href="login.html" class="nav-link" id="loginLink">
+                            <i class="fas fa-user"></i> Sign In
+                        </a>
+                        <div class="dropdown-content" id="userDropdown" style="display: none;">
+                            <a href="profile.html">Profile</a>
+                            <a href="#" id="logoutBtn">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="checkout-steps">
+            <span class="step active">Shipping</span>
+            <span>></span>
+            <span class="step">Payment</span>
+            <span>></span>
+            <span class="step">Place Order</span>
+        </div>
+
+        <div class="shipping-container">
+            <h2>Shipping Address</h2>
+            <form id="shippingForm">
+                <div class="form-group">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" id="address" class="form-control" placeholder="Enter address" required>
+                </div>
+                <div class="form-group">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" id="city" class="form-control" placeholder="Enter city" required>
+                </div>
+                <div class="form-group">
+                    <label for="postalCode" class="form-label">Postal Code</label>
+                    <input type="text" id="postalCode" class="form-control" placeholder="Enter postal code" required>
+                </div>
+                <div class="form-group">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" id="country" class="form-control" placeholder="Enter country" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Continue</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/checkout/shipping.js"></script>
+</body>
+
+</html>

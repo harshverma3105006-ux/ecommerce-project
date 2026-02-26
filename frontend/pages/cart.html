@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | ProShop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <style>
+        .cart-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        @media(max-width: 900px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cart-items {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 2fr 1fr 1fr auto;
+            align-items: center;
+            gap: 15px;
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+        }
+
+        @media(max-width: 600px) {
+            .cart-item {
+                grid-template-columns: 80px 1fr;
+                gap: 10px;
+            }
+
+            .cart-item>*:nth-child(n+3) {
+                grid-column: 2;
+            }
+        }
+
+        .item-image {
+            width: 100%;
+            border-radius: var(--radius-md);
+        }
+
+        .item-name {
+            font-weight: 600;
+        }
+
+        .item-price {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .qty-select {
+            padding: 5px 10px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .btn-remove {
+            background: none;
+            border: none;
+            color: var(--danger-color);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .btn-remove:hover {
+            color: #b91c1c;
+        }
+
+        .cart-summary {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            height: fit-content;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .summary-total {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-shopping-bag"></i> ProShop
+                </a>
+                <div class="nav-links">
+                    <button id="themeToggle" class="icon-btn" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="cart.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span id="cartCount" class="badge">0</span>
+                    </a>
+                    <div class="dropdown" id="userMenuContainer">
+                        <a href="login.html" class="nav-link" id="loginLink">
+                            <i class="fas fa-user"></i> Sign In
+                        </a>
+                        <div class="dropdown-content" id="userDropdown" style="display: none;">
+                            <a href="profile.html">Profile</a>
+                            <a href="#" id="logoutBtn">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Shopping Cart</h1>
+        <div id="cartMessage" style="display: none;"></div>
+
+        <div class="cart-container" id="cartContainer" style="display: none;">
+            <div class="cart-items" id="cartItemsList">
+                <!-- Cart items injected here -->
+            </div>
+
+            <div class="cart-summary">
+                <h2>Summary</h2>
+                <div class="summary-row">
+                    <span>Subtotal (<span id="totalItems">0</span> items)</span>
+                    <span class="summary-total" id="totalPrice">₹0.00</span>
+                </div>
+                <button class="btn btn-primary btn-checkout" id="checkoutBtn">Proceed To Checkout</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/cart.js"></script>
+</body>
+
+</html>

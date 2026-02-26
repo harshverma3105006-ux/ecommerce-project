@@ -1,0 +1,117 @@
+[
+  {
+    "name": "Airpods Wireless Bluetooth Headphones",
+    "path": "/images/airpods.jpg",
+    "url": "https://images.unsplash.com/photo-1606220588913-b3eea415124b?q=80&w=500"
+  },
+  {
+    "name": "Sony Playstation 5",
+    "path": "/images/playstation.jpg",
+    "url": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?q=80&w=500"
+  },
+  {
+    "name": "Cannon EOS 80D DSLR Camera",
+    "path": "/images/camera.jpg",
+    "url": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=500"
+  },
+  {
+    "name": "Macbook Pro 16-inch M3 Max",
+    "path": "/images/macbook.jpg",
+    "url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=500"
+  },
+  {
+    "name": "iPhone 15 Pro Max",
+    "path": "/images/iphone.jpg",
+    "url": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=500"
+  },
+  {
+    "name": "Samsung Galaxy S24 Ultra",
+    "path": "/images/s24.jpg",
+    "url": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?q=80&w=500"
+  },
+  {
+    "name": "Sony WH-1000XM5",
+    "path": "/images/sony_headphones.jpg",
+    "url": "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?q=80&w=500"
+  },
+  {
+    "name": "Logitech MX Master 3S",
+    "path": "/images/mouse.jpg",
+    "url": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?q=80&w=500"
+  },
+  {
+    "name": "Keychron K2 Mechanical Keyboard",
+    "path": "/images/keyboard.jpg",
+    "url": "https://images.unsplash.com/photo-1595225476474-87563907a212?q=80&w=500"
+  },
+  {
+    "name": "Nintendo Switch OLED",
+    "path": "/images/switch.jpg",
+    "url": "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?q=80&w=500"
+  },
+  {
+    "name": "DJI Mini 3 Pro Drone",
+    "path": "/images/drone.jpg",
+    "url": "https://images.unsplash.com/photo-1579829366248-204fe8413f31?q=80&w=500"
+  },
+  {
+    "name": "Nike Air Force 1",
+    "path": "/images/shoes.jpg",
+    "url": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=500"
+  },
+  {
+    "name": "Adidas Ultraboost 22",
+    "path": "/images/ultraboost.jpg",
+    "url": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=500"
+  },
+  {
+    "name": "LG C3 65\" OLED TV",
+    "path": "/images/tv.jpg",
+    "url": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?q=80&w=500"
+  },
+  {
+    "name": "Amazon Echo Dot (5th Gen)",
+    "path": "/images/alexa.jpg",
+    "url": "https://images.unsplash.com/photo-1543512214-318c7553f230?q=80&w=500"
+  },
+  {
+    "name": "GoPro HERO11 Black",
+    "path": "/images/gopro.jpg",
+    "url": "https://images.unsplash.com/photo-1565330335043-424a1ff9b740?q=80&w=500"
+  },
+  {
+    "name": "Casio G-Shock Series",
+    "path": "/images/watch.jpg",
+    "url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=500"
+  },
+  {
+    "name": "Bose QuietComfort Earbuds II",
+    "path": "/images/bose_earbuds.jpg",
+    "url": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=500"
+  },
+  {
+    "name": "Hydro Flask Water Bottle 32oz",
+    "path": "/images/flask.jpg",
+    "url": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?q=80&w=500"
+  },
+  {
+    "name": "Dyson V15 Detect Vacuum",
+    "path": "/images/dyson.jpg",
+    "url": "https://images.unsplash.com/photo-1558317374-067fb5f30001?q=80&w=500"
+  },
+  {
+    "name": "Instant Pot Duo 7-in-1",
+    "path": "/images/instantpot.jpg",
+    "url": "https://images.unsplash.com/photo-1585932594539-77edfaeb6a26?q=80&w=500"
+  },
+  {
+    "name": "Sony A7 IV Mirrorless Camera",
+    "path": "/images/sony_camera.jpg",
+    "url": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=500"
+  },
+  {
+    "name": "Apple Watch Series 9",
+    "path": "/images/apple_watch.jpg",
+    "url": "https://images.unsplash.com/photo-1434493789847-2f02bbfd0d8d?q=80&w=500"
+  }
+]
